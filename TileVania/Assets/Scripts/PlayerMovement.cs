@@ -11,14 +11,16 @@ public class PlayerMovement : MonoBehaviour
     Animator animator;
     CapsuleCollider2D playerCollider;
     BoxCollider2D feetCollider;
+    Vector2 deathKick = new Vector2(0f, 50f);
 
     [SerializeField] float runSpeed;
     [SerializeField] float jumpSpeed;
     [SerializeField] float climbSpeed;
+    [SerializeField] GameObject bullet;
+    [SerializeField] Transform gun;
 
     float startingGravityScale;
     bool isAlive = true;
-    Vector2 deathKick = new Vector2(0f, 50f);
 
     void Start() 
     {
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         FlipSprite();
         ClimbLadder();
         Die();
+        Shoot();
     }
 
     void Run()
@@ -102,5 +105,13 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRB.velocity += new Vector2(0f, jumpSpeed); 
         }   
+    }
+
+    void Shoot()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(bullet, gun.position, transform.rotation);
+        }
     }
 }
