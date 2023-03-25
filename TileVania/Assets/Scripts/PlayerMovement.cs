@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float climbSpeed;
 
     float startingGravityScale;
+    bool isAlive = true;
+    Vector2 deathKick = new Vector2(0f, 50f);
 
     void Start() 
     {
@@ -29,9 +31,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!isAlive) {return;}
+
         Run();
         FlipSprite();
         ClimbLadder();
+        Die();
     }
 
     void Run()
@@ -72,13 +77,27 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void Die()
+    {
+        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards")))
+        {
+            isAlive = false;
+            animator.SetTrigger("Dying");
+            playerRB.velocity = deathKick;
+        } 
+    }
+
     void OnMove(InputValue value)
     {
+        if (!isAlive) {return;}
+
         moveInput = value.Get<Vector2>();
     }
 
     void OnJump(InputValue value)
     {
+        if (!isAlive) {return;}
+
         if (value.isPressed && feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             playerRB.velocity += new Vector2(0f, jumpSpeed); 
