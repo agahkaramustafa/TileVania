@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5097922118807591664}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480821437
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 933118166, guid: c560aca4203d4b748bc1e7189a327376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -256,8 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd91b0cac2073c04e815271bed5eb160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 10
-  jumpSpeed: 22
+  runSpeed: 8
+  jumpSpeed: 21
   climbSpeed: 10
   bullet: {fileID: 5200097019269045751, guid: efdf93ad488da5a48b6c1f2be8a701d9, type: 3}
   gun: {fileID: 8125778231829228171}
